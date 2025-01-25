@@ -28,5 +28,5 @@ private:
 
 	eScene_ID nextSceneID;        // Ÿ‚É‘JˆÚ‚·‚éƒV[ƒ“‚ÌID
 
-	int prevEKey, nowEKey;
+	int prevSpaceKey, nowSpaceKey;
 };

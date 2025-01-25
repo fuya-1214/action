@@ -34,16 +34,16 @@ void GameOverScene::GameInit(void)
 	// 次のシーンの初期設定
 	nextSceneID = E_SCENE_GAMEOVER;
 
-	prevEKey = nowEKey = 0;
+	prevSpaceKey = nowSpaceKey = 0;
 }
 
 void GameOverScene::Update(void)
 {
-	prevEKey = nowEKey;
-	nowEKey = CheckHitKey(KEY_INPUT_E);
+	prevSpaceKey = nowSpaceKey;
+	nowSpaceKey = CheckHitKey(KEY_INPUT_SPACE);
 
 	// スペースキーが押されたかをアップトリガーをアップトリガー判断
-	if (prevEKey == 1 && nowEKey == 0)
+	if (prevSpaceKey == 1 && nowSpaceKey == 0)
 	{
 		nextSceneID = E_SCENE_TITLE;
 	}

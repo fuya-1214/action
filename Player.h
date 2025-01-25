@@ -16,7 +16,7 @@ public:
 	static constexpr int COLLISION_RECT_R_SPACE = (CHARA_SIZE_WID - COLLISION_RECT_L_SPACE - CHARA_BODY_SIZE_WID);  // プレイヤー画像の右側の空きサイズ
 
 	static constexpr int COLLISION_RECT_Y_OFFSET = 3;   // 衝突矩形のオフセット
-	static constexpr int COLLISION_FOOT_RECT_X = 0;     // 衝突矩形のオフセット
+	static constexpr int COLLISION_FOOT_RECT_X = -1;     // 衝突矩形のオフセット
 
 	// 最大アニメーションパターン数
 	static constexpr int MAX_ANIM_NUM = 8;

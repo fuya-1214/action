@@ -30,7 +30,7 @@ bool Stage::SystemInit(void)
 // ゲーム起動時・再開時にする処理
 void Stage::GameInit(void)
 {
-	LoadGroundData();          // 地上マップデータを読み込む
+	LoadStageData();          // ステージデータを読み込む
 
 	mapDispStPos.x = mapDispStPos.y = 0;
 }
@@ -72,13 +72,13 @@ bool Stage::Release(void)
 }
 
 // 外部ファイルからマップデータを読み込む
-bool Stage::LoadGroundData(void)
+bool Stage::LoadStageData(void)
 {
 	int loadBuff[MAP_MAX_NUM_X + 1];
 
 	// マップデータファイルをオープン
 	FILE* fp;
-	if (fopen_s(&fp, "Stage/Stage.dat", "rb") != 0)return false;
+	if (fopen_s(&fp, "Stage/Sample.dat", "rb") != 0)return false;
 
 	for (int yy = 0; yy < MAP_MAX_NUM_Y; yy++)
 	{

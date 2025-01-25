@@ -90,7 +90,7 @@ void Player::Update(void)
 	//右側
 	if (pos.x >= Application::SCREEN_SIZE_WID)
 	{
-		pos.x = Application::SCREEN_SIZE_WID - CHARA_BODY_SIZE_WID - 1;
+//		pos.x = Application::SCREEN_SIZE_WID - CHARA_BODY_SIZE_WID - 1;
 	}
 
 	// 左右の衝突判定
@@ -323,7 +323,7 @@ bool Player::IsCollisionStage(POSITION worldPos)
 
 	int chipNo = stage->GetMapChipNo(mapPos);
 
-	if (chipNo >= 11)return true;
+	if (chipNo >= 10)return true;
 	return false;
 }
 
@@ -371,7 +371,7 @@ void Player::CollisionFoot(void)
 	{
 		// プレイヤーのY座標を地面に接触した座標に設定する
 		POSITION mPos = World2MapPos(footPosC);
-		pos.y = static_cast<int>((mPos.y * Stage::MAP_CHIP_HIG) - 1 - (CHARA_SIZE_HIG / 2));
+		pos.y = static_cast<float>((mPos.y * Stage::MAP_CHIP_HIG) - 1 - (CHARA_SIZE_HIG / 2));
 
 		// 地面についたのでジャンプをリセットする
 		jumpFlg = false;
@@ -444,6 +444,7 @@ void Player::CollisionSide(void)
 	POSITION headPosR = GetCollisionPos(COLLISION_LR::E_RIGHT, COLLISION_TB::E_TOP);
 	POSITION centerPosR = GetCollisionPos(COLLISION_LR::E_RIGHT, COLLISION_TB::E_CENTER);
 	POSITION footPosR = GetCollisionPos(COLLISION_LR::E_RIGHT, COLLISION_TB::E_BOTTOM);
+
 	if (IsCollisionStage(headPosR) || IsCollisionStage(centerPosR) || IsCollisionStage(footPosR))
 	{
 		POSITION mPos = World2MapPos(headPosR);
@@ -457,7 +458,7 @@ void Player::CollisionSide(void)
 			if (dir == DIRECTION::E_DIR_RIGHT)
 			{
 				// 右を向いているとき
-				pos.x = static_cast<float>((mPos.x * Stage::MAP_CHIP_WID) - 1 - ((COLLISION_RECT_L_SPACE + CHARA_BODY_SIZE_WID / 2)));
+				pos.x = static_cast<float>((mPos.x * Stage::MAP_CHIP_WID) - 1 - ((COLLISION_RECT_L_SPACE + CHARA_BODY_SIZE_WID) - (CHARA_SIZE_WID / 2)));
 			}
 			else
 			{
@@ -481,7 +482,7 @@ void Player::CollisionSide(void)
 		}
 		else
 		{
-			if (dir == DIRECTION::E_DIR_LEFT)
+			if (dir == DIRECTION::E_DIR_RIGHT)
 			{
 				// 右を向いているとき
 				pos.x = static_cast<float>((mPos.x + 1) * Stage::MAP_CHIP_WID + (CHARA_SIZE_WID / 2 - COLLISION_RECT_L_SPACE));
@@ -547,7 +548,7 @@ POSITION Player::GetCollisionPos(COLLISION_LR lr, COLLISION_TB tb)
 				// 右を向いているとき
 				pPos.x += ((COLLISION_RECT_L_SPACE + CHARA_BODY_SIZE_WID) - (CHARA_SIZE_WID / 2));
 			}
-			else
+			if (dir == DIRECTION::E_DIR_LEFT)
 			{
 				// 左を向いているとき
 				pPos.x += (CHARA_SIZE_WID / 2 - COLLISION_RECT_L_SPACE);

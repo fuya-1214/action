@@ -93,7 +93,7 @@ void GameScene::MapScrollProc(void)
 	int rightEdge = leftEdge + Application::SCREEN_SIZE_WID - 1;
 
 	// 画面の右端のマップチップ座標内に達しているか調べる
-	if (playerPos.x >= rightEdge - Stage::MAP_CHIP_WID)
+	if (playerPos.x >= rightEdge - Stage::MAP_CHIP_WID * 2)
 	{
 		// 表示画面の右端に達しているので、プレイヤー位置が中央に来る表示開始位置を求める
 		int dx = playerPos.x - (Application::SCREEN_SIZE_WID / 2);
